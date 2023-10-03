@@ -1,0 +1,41 @@
+/* .main-section-container {
+    position: relative;
+} */
+
+#main-title {
+    font-family: Inter;
+    font-size: 40px;
+    font-weight: 600;
+    color: #000;
+    position: absolute;
+    left: 296px;
+    top: 76px;
+}
+
+.sub-section {
+    display: flex;
+    position: absolute;
+    left: 316px;
+    top: 149px;
+}
+
+.filter-container {
+    display: flex;
+}
+
+.button {
+    /* width: 198px;
+    height: 44px; */
+    background-color: #48C15B;
+    border: none;
+    border-radius: 13px;
+    width: 200px;
+    height: 48px;
+    padding: 15px 0px;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}

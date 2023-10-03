@@ -1,0 +1,11 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+.page-container {
+    /* display: grid;
+    grid-template-columns: repeat(7, 1fr); */
+    display: flex;
+}
