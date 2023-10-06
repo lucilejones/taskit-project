@@ -1,22 +1,28 @@
-/* .main-section-container {
-    position: relative;
-} */
+.main-section-container {
+    width: 1028px;
+}
 
 #main-title {
     font-family: Inter;
     font-size: 40px;
     font-weight: 600;
     color: #000;
-    position: absolute;
+    /* position: absolute;
     left: 296px;
-    top: 76px;
+    top: 76px; */
 }
 
 .sub-section {
     display: flex;
-    position: absolute;
+    flex-direction: column;
+    justify-content: space-between;
+    /* position: absolute;
     left: 316px;
-    top: 149px;
+    top: 130px; */
+}
+
+.functionality-header {
+    display: flex;
 }
 
 .filter-container {
@@ -39,3 +45,19 @@
     font-size: 16px;
     font-weight: 600;
 }
+
+select {
+    width: 104px;
+    height: 26px;
+}
+
+.table-headings {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+
+.table-headings > li {
+    list-style-type: none;
+}
+
