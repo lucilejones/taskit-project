@@ -1,6 +1,6 @@
-.main-section-container {
-    width: 1028px;
-}
+/* .main-section-container {
+
+} */
 
 #main-title {
     font-family: Inter;
@@ -16,6 +16,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 25px;
     /* position: absolute;
     left: 316px;
     top: 130px; */
@@ -30,13 +31,10 @@
 }
 
 .button {
-    /* width: 198px;
-    height: 44px; */
     background-color: #48C15B;
     border: none;
     border-radius: 13px;
-    width: 200px;
-    height: 48px;
+    width: 150px;
     padding: 15px 0px;
     justify-content: center;
     align-items: center;

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./main-section.component.css']
 })
 export class MainSectionComponent {
-  onAddFormClicked = true;
+  onAddFormClicked = false;
 }
