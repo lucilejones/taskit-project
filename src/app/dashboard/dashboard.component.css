@@ -1,0 +1,15 @@
+.page-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /* display: flex; */
+}
+
+.sidebar-container {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.main-section-container {
+    grid-column-start: 2;
+    grid-column-end: 8;
+}
