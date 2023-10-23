@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, booleanAttribute } from '@angular/core';
 
 @Component({
   selector: 'app-main-section',
@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class MainSectionComponent {
   onAddFormClicked = false;
+
+  // TODO ? Get the form to pop up when the button is clicked but then close when the form is submitted
+  // @Input({transform: booleanAttribute}) onAddFormClicked: boolean;
 }

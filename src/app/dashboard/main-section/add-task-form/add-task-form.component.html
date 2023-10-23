@@ -15,7 +15,7 @@ z-index: 1;">
         <input type="text" id="title" formControlName="title">
     
         <label for="dueDate">Due Date: </label>
-        <input type="text" id="dueDate" formControlName="dueDate">
+        <input type="date" id="dueDate" formControlName="dueDate">
     
         <label for="priority">Priority: </label>
         <!-- <input type="text" id="priority" formControlName="priority"> -->
@@ -24,12 +24,14 @@ z-index: 1;">
         </select>
     
         <label for="status">Status: </label>
-        <input type="text" id="status" formControlName="status">
+        <select id="status" formControlName="status">
+            <option *ngFor="let choice of statusChoices" [ngValue]="choice">{{ choice }}</option>
+        </select>
     
-        <label for="actions">Actions: </label>
-        <input type="text" id="actions" formControlName="actions">
+        <!-- <label for="actions">Actions: </label>
+        <input type="text" id="actions" formControlName="actions"> -->
     
-        <button type="submit">Add Task</button>
+        <button type="submit" [disabled]="!taskForm.valid">Add Task</button>
     </form>
 </div>
 
