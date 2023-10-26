@@ -31,4 +31,11 @@ export class TaskListComponent implements OnInit {
   ngOnInit() {
     this.tasks = this.tasksService.tasks;
   }
+
+  // deleteTask() {
+  //   this.tasksService.removeTask();
+  // }
 }
+
+// TODO how to pass the correct task to the remove task method?
+// TODO have this task list subscribe to know when a task has been removed?

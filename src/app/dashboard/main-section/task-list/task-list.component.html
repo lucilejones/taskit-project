@@ -4,7 +4,7 @@
         <p> {{ task.dueDate }}</p>
         <p> {{ task.priority }}</p>
         <p> {{ task.status }}</p>
-        <p> <span>{{task.actions[0] }}</span><span>{{ task.actions[1] }}</span></p>
+        <p> <span>{{task.actions[0] }}</span><span (click)="deleteTask()">{{ task.actions[1] }}</span></p>
     </div>
 
 </div>
