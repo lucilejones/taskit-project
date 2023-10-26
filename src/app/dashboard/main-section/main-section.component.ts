@@ -6,8 +6,10 @@ import { Component, Input, booleanAttribute } from '@angular/core';
   styleUrls: ['./main-section.component.css']
 })
 export class MainSectionComponent {
-  onAddFormClicked = false;
+  onAddFormClicked: boolean = false;
 
-  // TODO ? Get the form to pop up when the button is clicked but then close when the form is submitted
-  // @Input({transform: booleanAttribute}) onAddFormClicked: boolean;
+  onFormToggle() {
+    this.onAddFormClicked = !this.onAddFormClicked;
+  }
+
 }

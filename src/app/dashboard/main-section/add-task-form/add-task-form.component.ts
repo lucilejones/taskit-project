@@ -1,5 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators, NgForm } from '@angular/forms';
+
+import { TasksService } from '../../shared/tasks.service';
+import { Task } from '../../shared/task.model';
 
 @Component({
   selector: 'app-add-task-form',
@@ -7,7 +10,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./add-task-form.component.css']
 })
 export class AddTaskFormComponent {
-  // @Output() onAddFormClicked: EventEmitter<boolean> = new EventEmitter();
+  @Output() formClicked: EventEmitter<boolean> = new EventEmitter();
+
   priorityChoices: string[] = ['Low', 'Medium', 'High'];
   statusChoices: string[] = ['To Do', 'In Progress', 'Done'];
   taskForm = this.fb.group({
@@ -25,15 +29,19 @@ export class AddTaskFormComponent {
   //   actions: new FormControl([])
   // });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private tasksService: TasksService) {}
 
-  onSubmit() {
+  // newTask: Task = {...this.taskForm, actions: ['edit', 'delete']}
+
+  onSubmit(form: NgForm) {
     if (this.taskForm.valid) {
-      console.log(this.taskForm.value);
-      // TODO add a service and a function to push this task to the tasks array
+      this.tasksService.tasks.push({...form.value, actions: ['edit', 'delete']});
+      console.log(form.value);
+
     } else {
       console.log('Form is invalid.');
     };
-    // this.onAddFormClicked.emit();
+    this.formClicked.emit(!this.formClicked);
+    console.log(this.formClicked);
   }
 }
