@@ -8,7 +8,13 @@ const appRoutes: Routes = [
     { path: '', component: LandingPageComponent},
     // { path: '', redirectTo: 'home', pathMatch: 'full'},
     // { path: 'home', component: LandingPageComponent},
-    { path: 'dashboard', component: DashboardComponent}
+    // { path: 'dashboard', component: DashboardComponent},
+    { 
+        path: 'dashboard',
+        loadChildren: () => import('./dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+        ),
+    }
 ];
 
 @NgModule({
