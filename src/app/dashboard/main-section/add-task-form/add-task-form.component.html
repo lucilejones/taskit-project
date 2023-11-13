@@ -33,9 +33,12 @@ z-index: 1;">
     
         <button type="submit" [disabled]="!taskForm.valid">Add Task</button>
     </form>
+    <div>
+        <button (click)="onClose()">Close</button>
+    </div>
 </div>
 
-<div style="    position: absolute;
+<div (click)="onClose()" style="    position: absolute;
 top: 0;
 left: 0;
 right: 0;

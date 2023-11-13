@@ -8,28 +8,18 @@ import { TasksService } from '../../shared/tasks.service';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-  // tasks: Task[]= [
-  //   new Task(
-  //     'Clean art area',
-  //     'Oct 20, 2023',
-  //     'Medium',
-  //     'To do',
-  //     ['edit', 'delete']
-  //   ),
-  //   new Task(
-  //     'Make apple pie',
-  //     'Oct 31, 2023',
-  //     'High',
-  //     'To do',
-  //     ['edit', 'delete']
-  //   )
-  // ];
   tasks: Task[] = [];
 
   constructor(private tasksService: TasksService) {}
 
   ngOnInit() {
-    this.tasks = this.tasksService.tasks;
+    this.tasks = this.tasksService.getTasks();
+    this.tasksService.taskListUpdated
+      .subscribe(
+        (tasks: Task[]) => {
+          this.tasks = tasks;
+        }
+      )
   }
 
   // deleteTask() {

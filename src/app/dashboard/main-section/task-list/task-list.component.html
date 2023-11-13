@@ -1,7 +1,7 @@
 <div *ngFor="let task of tasks">
     <div class="task-row">
         <p> {{ task.title }}</p>
-        <p> {{ task.dueDate }}</p>
+        <p> {{ task.dueDate | date }}</p>
         <p> {{ task.priority }}</p>
         <p> {{ task.status }}</p>
         <p> <span>{{task.actions[0] }}</span><span (click)="deleteTask()">{{ task.actions[1] }}</span></p>

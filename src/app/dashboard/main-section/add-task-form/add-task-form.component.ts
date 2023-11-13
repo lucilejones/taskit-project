@@ -21,21 +21,13 @@ export class AddTaskFormComponent {
     status: ['', [Validators.required]],
     // actions: [[]]
   });
-  // taskForm = new FormGroup({
-  //   title: new FormControl(''),
-  //   dueDate: new FormControl(''),
-  //   priority: new FormControl(''),
-  //   status: new FormControl(''),
-  //   actions: new FormControl([])
-  // });
+
 
   constructor(private fb: FormBuilder, private tasksService: TasksService) {}
 
-  // newTask: Task = {...this.taskForm, actions: ['edit', 'delete']}
-
   onSubmit(form: NgForm) {
     if (this.taskForm.valid) {
-      this.tasksService.tasks.push({...form.value, actions: ['edit', 'delete']});
+      this.tasksService.addTask({...form.value, actions: ['edit', 'delete']});
       console.log(form.value);
 
     } else {
@@ -44,4 +36,8 @@ export class AddTaskFormComponent {
     this.formClicked.emit(!this.formClicked);
     console.log(this.formClicked);
   }
+
+  onClose() {
+    this.formClicked.emit(!this.formClicked);
+}
 }

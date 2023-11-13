@@ -1,7 +1,10 @@
+import { EventEmitter } from '@angular/core';
 import { Task } from './task.model';
 
 export class TasksService {
-  tasks: Task[]= [
+  taskListUpdated = new EventEmitter<Task[]>();
+
+  private tasks: Task[] = [
     new Task(
       'Clean art area',
       'Oct 20, 2023',
@@ -18,8 +21,13 @@ export class TasksService {
     )
   ];
 
+  getTasks() {
+    return this.tasks.slice();
+  }
+
   addTask(task: Task) {
     this.tasks.push(task);
+    this.taskListUpdated.emit(this.tasks.slice());
   }
 
   removeTask(index: number) {
@@ -30,8 +38,6 @@ export class TasksService {
   
 }
 
-// addTask function automatically refresh the list?
-// when the form view closes it does a new render of the task list?
 // but the remove/delete might need to subscribe, unless it opens a window and then closes
-// the edit task will open a new view and then close also
+
 
