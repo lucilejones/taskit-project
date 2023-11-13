@@ -7,6 +7,7 @@ export class TasksService {
   private tasks: Task[] = [
     new Task(
       'Clean art area',
+      'Throw away old projects and organize markers.',
       'Oct 20, 2023',
       'Medium',
       'To do',
@@ -14,6 +15,7 @@ export class TasksService {
     ),
     new Task(
       'Make apple pie',
+      'Make crust ahead of time.',
       'Oct 31, 2023',
       'High',
       'To do',

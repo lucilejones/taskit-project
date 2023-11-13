@@ -1,5 +1,47 @@
+.formBox {
+    position: absolute;
+    top: 200px;
+    left: 15vw;
+    height: 50vh;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 9px;
+    z-index: 1;
+}
+
 .task-form {
     display: flex;
+    /* flex-direction: column; */
+    /* width: 50vw; */
+}
+
+.task-main-info {
+    margin-right: 10px;
+    display: flex;
     flex-direction: column;
-    width: 300px;
+}
+
+.task-detail-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.formCloseButton {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: .5
 }

@@ -16,6 +16,7 @@ export class AddTaskFormComponent {
   statusChoices: string[] = ['To Do', 'In Progress', 'Done'];
   taskForm = this.fb.group({
     title: ['', [Validators.required]],
+    description: [''],
     dueDate: ['', [Validators.required]],
     priority: ['', [Validators.required]],
     status: ['', [Validators.required]],
@@ -28,13 +29,14 @@ export class AddTaskFormComponent {
   onSubmit(form: NgForm) {
     if (this.taskForm.valid) {
       this.tasksService.addTask({...form.value, actions: ['edit', 'delete']});
-      console.log(form.value);
+      console.log("form value", form.value);
+      console.log("tasks list", this.tasksService.getTasks());
 
     } else {
       console.log('Form is invalid.');
     };
     this.formClicked.emit(!this.formClicked);
-    console.log(this.formClicked);
+    // console.log(this.formClicked);
   }
 
   onClose() {
