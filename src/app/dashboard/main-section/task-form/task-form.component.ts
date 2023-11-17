@@ -5,11 +5,11 @@ import { TasksService } from '../../shared/tasks.service';
 import { Task } from '../../shared/task.model';
 
 @Component({
-  selector: 'app-add-task-form',
-  templateUrl: './add-task-form.component.html',
-  styleUrls: ['./add-task-form.component.css']
+  selector: 'app-task-form',
+  templateUrl: './task-form.component.html',
+  styleUrls: ['./task-form.component.css']
 })
-export class AddTaskFormComponent {
+export class TaskFormComponent {
   @Output() formClicked: EventEmitter<boolean> = new EventEmitter();
 
   priorityChoices: string[] = ['Low', 'Medium', 'High'];
@@ -28,7 +28,14 @@ export class AddTaskFormComponent {
 
   onSubmit(form: NgForm) {
     if (this.taskForm.valid) {
-      this.tasksService.addTask({...form.value, actions: ['edit', 'delete']});
+
+      const newTask: Task = {
+        id: +(Math.random() * 1000000).toFixed(0),
+        ...form.value,
+        actions: ['edit', 'delete']
+      }
+
+      this.tasksService.addTask(newTask);
       console.log("form value", form.value);
       console.log("tasks list", this.tasksService.getTasks());
 

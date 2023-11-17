@@ -1,11 +1,13 @@
 import { EventEmitter } from '@angular/core';
 import { Task } from './task.model';
+import { Subject } from 'rxjs';
 
 export class TasksService {
-  taskListUpdated = new EventEmitter<Task[]>();
+  taskListUpdated = new Subject<Task[]>();
 
   private tasks: Task[] = [
     new Task(
+      1,
       'Clean art area',
       'Throw away old projects and organize markers.',
       'Oct 20, 2023',
@@ -14,6 +16,7 @@ export class TasksService {
       ['edit', 'delete']
     ),
     new Task(
+      2,
       'Make apple pie',
       'Make crust ahead of time.',
       'Oct 31, 2023',
@@ -27,9 +30,9 @@ export class TasksService {
     return this.tasks.slice();
   }
 
-  addTask(task: Task) {
-    this.tasks.push(task);
-    this.taskListUpdated.emit(this.tasks.slice());
+  addTask(newTask: Task) {
+    this.tasks.push(newTask);
+    this.taskListUpdated.next(this.tasks.slice());
   }
 
   removeTask(index: number) {

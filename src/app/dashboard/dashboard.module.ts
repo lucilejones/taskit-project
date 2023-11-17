@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { MainSectionComponent } from './main-section/main-section.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TaskListComponent } from './main-section/task-list/task-list.component';
-import { AddTaskFormComponent } from './main-section/add-task-form/add-task-form.component';
+import { TaskFormComponent } from './main-section/task-form/task-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
@@ -22,7 +22,7 @@ const routes: Routes = [
     SidebarComponent,
     MainSectionComponent,
     TaskListComponent,
-    AddTaskFormComponent
+    TaskFormComponent
   ],
   imports: [
     CommonModule,
