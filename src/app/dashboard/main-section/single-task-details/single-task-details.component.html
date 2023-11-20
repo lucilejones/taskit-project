@@ -1,0 +1,17 @@
+<div class="taskDetailsBox">
+    <div>
+        <p>{{ taskDetails.title }}</p>
+        <p>{{ taskDetails.description }}</p>
+        <p>{{ taskDetails.dueDate }}</p>
+        <p>{{ taskDetails.priority }}</p>
+        <p>{{ taskDetails.status }}</p>
+    </div>
+
+    <div class="detailsCloseButton">
+        <button (click)="onClose()">X</button>
+    </div>
+</div>
+
+
+
+<div (click)="onClose()" class="backdrop"></div>

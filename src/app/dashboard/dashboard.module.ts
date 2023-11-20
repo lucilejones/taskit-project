@@ -8,11 +8,17 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { TaskListComponent } from './main-section/task-list/task-list.component';
 import { TaskFormComponent } from './main-section/task-form/task-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SingleTaskDetailsComponent } from './main-section/single-task-details/single-task-details.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    children: [
+      { path: 'new', component: TaskFormComponent },
+      { path: ':id', component: SingleTaskDetailsComponent },
+      { path: ':id/edit', component: TaskFormComponent }
+    ]
   }
 ];
 
@@ -22,7 +28,8 @@ const routes: Routes = [
     SidebarComponent,
     MainSectionComponent,
     TaskListComponent,
-    TaskFormComponent
+    TaskFormComponent,
+    SingleTaskDetailsComponent
   ],
   imports: [
     CommonModule,

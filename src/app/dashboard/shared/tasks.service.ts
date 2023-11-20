@@ -30,6 +30,12 @@ export class TasksService {
     return this.tasks.slice();
   }
 
+  getTaskById(id: number) {
+    const foundTask = this.tasks.find((task) => task.id === id);
+
+    return foundTask;
+  }
+
   addTask(newTask: Task) {
     this.tasks.push(newTask);
     this.taskListUpdated.next(this.tasks.slice());

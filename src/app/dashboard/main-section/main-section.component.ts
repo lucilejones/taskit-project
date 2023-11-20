@@ -8,6 +8,7 @@ import { Component, Input, booleanAttribute } from '@angular/core';
 export class MainSectionComponent {
   onAddFormClicked: boolean = false;
 
+
   onFormToggle() {
     this.onAddFormClicked = !this.onAddFormClicked;
   }

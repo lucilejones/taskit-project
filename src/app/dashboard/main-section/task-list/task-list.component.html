@@ -1,6 +1,12 @@
 <div *ngFor="let task of tasks">
     <div class="task-row">
-        <p> {{ task.title }}</p>
+        <a
+        style="cursor: pointer;"
+        [routerLink]="[task.id]"
+        routerLinkActive="active"
+        >
+            <p> {{ task.title }}</p>
+        </a>  
         <p> {{ task.dueDate | date }}</p>
         <p> {{ task.priority }}</p>
         <p> {{ task.status }}</p>
