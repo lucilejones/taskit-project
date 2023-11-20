@@ -41,6 +41,23 @@ export class TasksService {
     this.taskListUpdated.next(this.tasks.slice());
   }
 
+  updateTask(taskId: number, updatedTaskValues: Partial<Task>) {
+    const taskIndex = this.tasks.findIndex((task) => task.id === taskId);
+
+    if(taskIndex !== -1) {
+      this.tasks[taskIndex] = {
+        ...this.tasks[taskIndex],
+        ...updatedTaskValues,
+        id: taskIndex
+      };
+
+      this.taskListUpdated.next(this.tasks.slice());
+    }
+    else {
+      console.error('Task not found');
+    }
+  }
+
   removeTask(index: number) {
     if(index !== -1) {
       this.tasks.splice(index, 1);

@@ -14,7 +14,7 @@
                     <option value="priority">Priority</option>
                   </select>
             </div>
-            <button class="button" id="add-button" (click)="onAddFormClicked = !onAddFormClicked">Add New Task</button>
+            <button class="button" id="add-button" routerLink="/dashboard/new">Add New Task</button>
         </div>
     
         <div class="task-list">
@@ -28,7 +28,7 @@
             <app-task-list></app-task-list>
         </div>
     </div>
-    <app-task-form *ngIf="onAddFormClicked" (formClicked)="onFormToggle($event)"></app-task-form>
+    <!-- <app-task-form *ngIf="onAddFormClicked" (formClicked)="onFormToggle()"></app-task-form> -->
     <!-- <app-add-task-form (onAddFormClicked)="onAddFormClicked"></app-add-task-form> -->
     <router-outlet></router-outlet>
 </div>

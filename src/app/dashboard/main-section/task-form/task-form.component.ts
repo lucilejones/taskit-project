@@ -1,8 +1,10 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, NgForm } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TasksService } from '../../shared/tasks.service';
 import { Task } from '../../shared/task.model';
+
 
 @Component({
   selector: 'app-task-form',
@@ -11,6 +13,17 @@ import { Task } from '../../shared/task.model';
 })
 export class TaskFormComponent {
   @Output() formClicked: EventEmitter<boolean> = new EventEmitter();
+
+  isEditingTask: boolean = false;
+  isTaskFormSubmitted: boolean = false;
+  taskId: number | null = null;
+  taskDetails: Partial<Task> = {
+    title: '',
+    description: '',
+    dueDate: '',
+    priority: '',
+    status: ''
+  }
 
   priorityChoices: string[] = ['Low', 'Medium', 'High'];
   statusChoices: string[] = ['To Do', 'In Progress', 'Done'];
@@ -24,7 +37,40 @@ export class TaskFormComponent {
   });
 
 
-  constructor(private fb: FormBuilder, private tasksService: TasksService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private fb: FormBuilder,
+    private tasksService: TasksService) {}
+
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.taskId = +params['id'];
+
+      this.isEditingTask = !!this.taskId;
+
+      if(this.isEditingTask) {
+        const editingTask = this.tasksService.getTaskById(this.taskId);
+
+        if(editingTask) {
+          this.taskDetails = {
+            title: editingTask.title,
+            description: editingTask.description,
+            dueDate: editingTask.dueDate,
+            priority: editingTask.priority,
+            status: editingTask.status
+          };
+          this.taskForm.patchValue({
+            title: editingTask.title,
+            description: editingTask.description,
+            dueDate: editingTask.dueDate,
+            priority: editingTask.priority,
+            status: editingTask.status
+          })
+        }
+      }
+    });
+  }
 
   onSubmit(form: NgForm) {
     if (this.taskForm.valid) {
@@ -42,11 +88,13 @@ export class TaskFormComponent {
     } else {
       console.log('Form is invalid.');
     };
-    this.formClicked.emit(!this.formClicked);
+    // this.formClicked.emit();
+    this.router.navigate(['/dashboard']);
     // console.log(this.formClicked);
   }
 
   onClose() {
-    this.formClicked.emit(!this.formClicked);
+    // this.formClicked.emit();
+    this.router.navigate(['/dashboard']);
 }
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { Task } from '../../shared/task.model';
 import { TasksService } from '../../shared/tasks.service';
+
 
 @Component({
   selector: 'app-task-list',
@@ -9,8 +12,13 @@ import { TasksService } from '../../shared/tasks.service';
 })
 export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
+  // taskDetails: Task;
 
-  constructor(private tasksService: TasksService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private rotuer: Router,
+    private tasksService: TasksService
+  ) {}
 
   ngOnInit() {
     this.tasks = this.tasksService.getTasks();
@@ -20,6 +28,12 @@ export class TaskListComponent implements OnInit {
           this.tasks = tasks;
         }
       )
+  }
+
+  navigateToEditTaskRoute(id) {
+    this.rotuer.navigate(['./', id, 'edit'], {
+      relativeTo: this.route,
+    });
   }
 
   // deleteTask() {
