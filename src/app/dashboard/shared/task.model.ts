@@ -6,6 +6,6 @@ export class Task {
         public description: string,
         public dueDate: string,
         public priority: string,
-        public status: string,
-        public actions: string[]) {}
+        public status: string
+    ) {}
 }

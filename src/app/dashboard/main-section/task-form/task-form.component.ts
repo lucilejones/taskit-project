@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TasksService } from '../../shared/tasks.service';
 import { Task } from '../../shared/task.model';
+import { DatabaseService } from '../../shared/database.service';
 
 
 @Component({
@@ -41,7 +42,8 @@ export class TaskFormComponent {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private tasksService: TasksService) {}
+    private tasksService: TasksService,
+    private databaseService: DatabaseService) {}
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -92,14 +94,14 @@ export class TaskFormComponent {
       const newTask: Task = {
         id: +(Math.random() * 1000000).toFixed(0),
         ...form.value,
-        actions: ['edit', 'delete']
+        // actions: ['edit', 'delete']
       }
 
       this.tasksService.addTask(newTask);
       console.log("form value", form.value);
       console.log("tasks list", this.tasksService.getTasks());
-
     } 
+    this.databaseService.saveTasksToDatabase();
     // this.formClicked.emit();
     this.router.navigate(['/dashboard']);
     // console.log(this.formClicked);

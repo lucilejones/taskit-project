@@ -5,15 +5,15 @@ import { Subject } from 'rxjs';
 export class TasksService {
   taskListUpdated = new Subject<Task[]>();
 
-  private tasks: Task[] = [
+  // private savedTasks: Task[] = [];
+  private savedTasks: Task[] = [
     new Task(
       1,
       'Clean art area',
       'Throw away old projects and organize markers.',
       '2023-11-30',
       'Medium',
-      'To Do',
-      ['edit', 'delete']
+      'To Do'
     ),
     new Task(
       2,
@@ -21,47 +21,53 @@ export class TasksService {
       'Make crust ahead of time.',
       '2023-12-5',
       'High',
-      'To Do',
-      ['edit', 'delete']
+      'To Do'
     )
   ];
 
+
   getTasks() {
-    return this.tasks.slice();
+    return this.savedTasks.slice();
   }
 
   getTaskById(id: number) {
-    const foundTask = this.tasks.find((task) => task.id === id);
+    const foundTask = this.savedTasks.find((task) => task.id === id);
 
     return foundTask;
   }
 
   addTask(newTask: Task) {
-    this.tasks.push(newTask);
-    this.taskListUpdated.next(this.tasks.slice());
+    this.savedTasks.push(newTask);
+    this.taskListUpdated.next(this.savedTasks.slice());
   }
 
   updateTask(taskId: number, updatedTaskValues: Partial<Task>) {
-    const taskIndex = this.tasks.findIndex((task) => task.id === taskId);
+    const taskIndex = this.savedTasks.findIndex((task) => task.id === taskId);
 
     if(taskIndex !== -1) {
-      this.tasks[taskIndex] = {
-        ...this.tasks[taskIndex],
-        ...updatedTaskValues
+      this.savedTasks[taskIndex] = {
+        ...this.savedTasks[taskIndex],
+        ...updatedTaskValues,
+        id: taskId
       };
 
-      this.taskListUpdated.next(this.tasks.slice());
+      this.taskListUpdated.next(this.savedTasks.slice());
     }
     else {
       console.error('Task not found');
     }
   }
 
-  removeTask(id: number) {
-    const newTaskList = this.tasks.filter((task) => task.id !== id);
+  setTasks(tasks: Task[]) {
+    this.savedTasks = tasks;
+    this.taskListUpdated.next(this.savedTasks.slice());
+  }
 
-    this.tasks = newTaskList;
-    this.taskListUpdated.next(this.tasks.slice());
+  removeTask(id: number) {
+    const newTaskList = this.savedTasks.filter((task) => task.id !== id);
+
+    this.savedTasks = newTaskList;
+    this.taskListUpdated.next(this.savedTasks.slice());
   }
   
 }

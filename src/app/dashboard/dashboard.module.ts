@@ -11,13 +11,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SingleTaskDetailsComponent } from './main-section/single-task-details/single-task-details.component';
 import { DeleteAlertComponent } from './main-section/delete-alert/delete-alert.component';
 
+import { taskResolver } from './dashboard.resolver';
+
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    resolve: [taskResolver],
     children: [
       { path: 'new', component: TaskFormComponent },
-      { path: ':id', component: SingleTaskDetailsComponent },
+      { 
+        path: ':id',
+        component: SingleTaskDetailsComponent,
+        resolve: [taskResolver],
+      },
       { path: ':id/edit', component: TaskFormComponent },
       { path: ':id/delete', component: DeleteAlertComponent }
     ]
