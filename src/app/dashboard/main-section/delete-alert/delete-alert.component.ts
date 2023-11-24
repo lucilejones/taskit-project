@@ -4,11 +4,11 @@ import { Task } from '../../shared/task.model';
 import { TasksService } from '../../shared/tasks.service';
 
 @Component({
-  selector: 'app-single-task-details',
-  templateUrl: './single-task-details.component.html',
-  styleUrls: ['./single-task-details.component.css']
+  selector: 'app-delete-alert',
+  templateUrl: './delete-alert.component.html',
+  styleUrls: ['./delete-alert.component.css']
 })
-export class SingleTaskDetailsComponent {
+export class DeleteAlertComponent {
   taskDetails: Task;
 
   constructor(
@@ -22,6 +22,11 @@ export class SingleTaskDetailsComponent {
       const taskIdFromParams = +params['id'];
       this.taskDetails = this.tasksService.getTaskById(taskIdFromParams);
     })
+  }
+
+  deleteTask(id) {
+    this.tasksService.removeTask(id);
+    this.router.navigate(['/dashboard']);
   }
 
   onClose() {

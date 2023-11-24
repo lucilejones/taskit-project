@@ -1,7 +1,7 @@
 <div class="formBox">
 <div>
     <div>
-        <p>Add a New Task</p>
+        <p>{{ isEditingTask ? 'Edit Task' : 'Add a New Task' }}</p>
     </div>
     <form [formGroup]="taskForm" class="task-form" (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="task-main-info">

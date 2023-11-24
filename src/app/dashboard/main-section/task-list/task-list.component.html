@@ -10,8 +10,8 @@
         <p> {{ task.dueDate | date }}</p>
         <p> {{ task.priority }}</p>
         <p> {{ task.status }}</p>
-        <p> <span (click)="navigateToEditTaskRoute(task.id)" style="cursor: pointer;">{{task.actions[0] }}</span>
-            <span (click)="deleteTask()">{{ task.actions[1] }}</span>
+        <p> <span (click)="navigateToEditTaskRoute(task.id)" style="cursor: pointer;">Edit</span>
+            <span (click)="navigateToDeleteAlertRoute(task.id)" style="cursor: pointer;">Delete</span>
         </p>
     </div>
 

@@ -10,9 +10,10 @@ import { LandingPageModule } from './landing-page/landing-page.module';
 
 import { TasksService } from './dashboard/shared/tasks.service';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

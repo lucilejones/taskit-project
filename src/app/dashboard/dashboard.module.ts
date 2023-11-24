@@ -9,6 +9,7 @@ import { TaskListComponent } from './main-section/task-list/task-list.component'
 import { TaskFormComponent } from './main-section/task-form/task-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SingleTaskDetailsComponent } from './main-section/single-task-details/single-task-details.component';
+import { DeleteAlertComponent } from './main-section/delete-alert/delete-alert.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
     children: [
       { path: 'new', component: TaskFormComponent },
       { path: ':id', component: SingleTaskDetailsComponent },
-      { path: ':id/edit', component: TaskFormComponent }
+      { path: ':id/edit', component: TaskFormComponent },
+      { path: ':id/delete', component: DeleteAlertComponent }
     ]
   }
 ];
@@ -29,7 +31,8 @@ const routes: Routes = [
     MainSectionComponent,
     TaskListComponent,
     TaskFormComponent,
-    SingleTaskDetailsComponent
+    SingleTaskDetailsComponent,
+    DeleteAlertComponent
   ],
   imports: [
     CommonModule,

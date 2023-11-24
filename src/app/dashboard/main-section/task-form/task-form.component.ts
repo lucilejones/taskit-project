@@ -12,7 +12,7 @@ import { Task } from '../../shared/task.model';
   styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent {
-  @Output() formClicked: EventEmitter<boolean> = new EventEmitter();
+  // @Output() formClicked: EventEmitter<boolean> = new EventEmitter();
 
   isEditingTask: boolean = false;
   isTaskFormSubmitted: boolean = false;
@@ -51,6 +51,8 @@ export class TaskFormComponent {
 
       if(this.isEditingTask) {
         const editingTask = this.tasksService.getTaskById(this.taskId);
+        console.log(editingTask);
+        console.log(this.taskId);
 
         if(editingTask) {
           this.taskDetails = {
@@ -73,8 +75,20 @@ export class TaskFormComponent {
   }
 
   onSubmit(form: NgForm) {
-    if (this.taskForm.valid) {
+    if (form.invalid) return;
 
+    this.taskDetails = {
+      title: form.value.title,
+      description: form.value.description,
+      dueDate: form.value.dueDate,
+      priority: form.value.priority,
+      status: form.value.status
+    }
+
+    if (this.isEditingTask) {
+      this.tasksService.updateTask(this.taskId, this.taskDetails);
+      console.log(this.taskId);
+    } else {
       const newTask: Task = {
         id: +(Math.random() * 1000000).toFixed(0),
         ...form.value,
@@ -85,9 +99,7 @@ export class TaskFormComponent {
       console.log("form value", form.value);
       console.log("tasks list", this.tasksService.getTasks());
 
-    } else {
-      console.log('Form is invalid.');
-    };
+    } 
     // this.formClicked.emit();
     this.router.navigate(['/dashboard']);
     // console.log(this.formClicked);

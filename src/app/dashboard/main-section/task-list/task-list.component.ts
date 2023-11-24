@@ -12,7 +12,6 @@ import { TasksService } from '../../shared/tasks.service';
 })
 export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
-  // taskDetails: Task;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,16 +29,18 @@ export class TaskListComponent implements OnInit {
       )
   }
 
-  navigateToEditTaskRoute(id) {
+  navigateToEditTaskRoute(id: number) {
     this.rotuer.navigate(['./', id, 'edit'], {
       relativeTo: this.route,
     });
   }
 
-  // deleteTask() {
-  //   this.tasksService.removeTask();
-  // }
+  navigateToDeleteAlertRoute(id: number) {
+    this.rotuer.navigate(['./', id, 'delete'], {
+      relativeTo: this.route,
+    });
+  }
+
+
 }
 
-// TODO how to pass the correct task to the remove task method?
-// TODO have this task list subscribe to know when a task has been removed?

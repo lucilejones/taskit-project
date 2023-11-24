@@ -1,0 +1,18 @@
+<div class="deleteAlertBox">
+    <p>Are you sure you want to delete {{ taskDetails.title }}?</p>
+
+    <div>
+        <button type="button" (click)="onClose()">Cancel</button>
+        <button type="button" (click)="deleteTask(taskDetails.id)">Delete</button>
+    </div>
+
+    <div class="deleteAlertCloseButton">
+        <button (click)="onClose()">X</button>
+    </div>
+</div>
+
+<div (click)="onClose()" class="backdrop"></div>
+
+
+
+

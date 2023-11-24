@@ -6,11 +6,5 @@ import { Component, Input, booleanAttribute } from '@angular/core';
   styleUrls: ['./main-section.component.css']
 })
 export class MainSectionComponent {
-  onAddFormClicked: boolean = false;
-
-
-  onFormToggle() {
-    this.onAddFormClicked = !this.onAddFormClicked;
-  }
 
 }

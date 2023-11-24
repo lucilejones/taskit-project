@@ -10,18 +10,18 @@ export class TasksService {
       1,
       'Clean art area',
       'Throw away old projects and organize markers.',
-      'Oct 20, 2023',
+      '2023-11-30',
       'Medium',
-      'To do',
+      'To Do',
       ['edit', 'delete']
     ),
     new Task(
       2,
       'Make apple pie',
       'Make crust ahead of time.',
-      'Oct 31, 2023',
+      '2023-12-5',
       'High',
-      'To do',
+      'To Do',
       ['edit', 'delete']
     )
   ];
@@ -47,8 +47,7 @@ export class TasksService {
     if(taskIndex !== -1) {
       this.tasks[taskIndex] = {
         ...this.tasks[taskIndex],
-        ...updatedTaskValues,
-        id: taskIndex
+        ...updatedTaskValues
       };
 
       this.taskListUpdated.next(this.tasks.slice());
@@ -58,14 +57,14 @@ export class TasksService {
     }
   }
 
-  removeTask(index: number) {
-    if(index !== -1) {
-      this.tasks.splice(index, 1);
-    }
+  removeTask(id: number) {
+    const newTaskList = this.tasks.filter((task) => task.id !== id);
+
+    this.tasks = newTaskList;
+    this.taskListUpdated.next(this.tasks.slice());
   }
   
 }
 
-// but the remove/delete might need to subscribe, unless it opens a window and then closes
 
 
