@@ -23,8 +23,10 @@ export class TaskListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.databaseService.getTasksFromDatabase();
-    this.savedTasks = this.tasksService.getTasks();
+    this.databaseService.getTasksFromDatabase().subscribe(tasks => {
+      this.savedTasks = tasks;
+    });
+    // this.savedTasks = this.tasksService.getTasks();
     // this.tasksService.taskListUpdated
     //   .subscribe(
     //     (tasks: Task[]) => {

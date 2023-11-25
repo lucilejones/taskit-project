@@ -5,26 +5,25 @@ import { Subject } from 'rxjs';
 export class TasksService {
   taskListUpdated = new Subject<Task[]>();
 
-  // private savedTasks: Task[] = [];
-  private savedTasks: Task[] = [
-    new Task(
-      1,
-      'Clean art area',
-      'Throw away old projects and organize markers.',
-      '2023-11-30',
-      'Medium',
-      'To Do'
-    ),
-    new Task(
-      2,
-      'Make apple pie',
-      'Make crust ahead of time.',
-      '2023-12-5',
-      'High',
-      'To Do'
-    )
-  ];
-
+  private savedTasks: Task[] = [];
+  // private savedTasks: Task[] = [
+  //   new Task(
+  //     1,
+  //     'Clean art area',
+  //     'Throw away old projects and organize markers.',
+  //     '2023-11-30',
+  //     'Medium',
+  //     'To Do'
+  //   ),
+  //   new Task(
+  //     2,
+  //     'Make apple pie',
+  //     'Make crust ahead of time.',
+  //     '2023-12-5',
+  //     'High',
+  //     'To Do'
+  //   )
+  // ];
 
   getTasks() {
     return this.savedTasks.slice();
