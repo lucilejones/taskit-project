@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Task } from '../../shared/task.model';
 import { TasksService } from '../../shared/tasks.service';
+import { DatabaseService } from '../../shared/database.service';
 
 @Component({
   selector: 'app-delete-alert',
@@ -14,7 +15,8 @@ export class DeleteAlertComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private tasksService: TasksService
+    private tasksService: TasksService,
+    private databaseService: DatabaseService
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class DeleteAlertComponent {
 
   deleteTask(id) {
     this.tasksService.removeTask(id);
+    this.databaseService.deleteTaskFromDatabase(id);
     this.router.navigate(['/dashboard']);
   }
 

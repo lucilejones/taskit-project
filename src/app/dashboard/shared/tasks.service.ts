@@ -58,6 +58,7 @@ export class TasksService {
   }
 
   setTasks(tasks: Task[]) {
+    console.log(tasks);
     this.savedTasks = tasks;
     this.taskListUpdated.next(this.savedTasks.slice());
   }

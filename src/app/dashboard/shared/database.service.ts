@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TasksService } from './tasks.service';
 import { Task } from './task.model';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -24,13 +24,20 @@ export class DatabaseService {
     }
 
     getTasksFromDatabase() {
-        const myDatabaseTasks = this.http.get<Task[]>(this.firebaseRootURL).pipe(
+        const myDatabaseTasks = this.http.get<Task[]>(this.firebaseRootURL)
+        .pipe(
             tap((tasks: Task[]) => {
+                console.log(tasks);
                 this.tasksService.setTasks(tasks);
             })
         );
-
         return myDatabaseTasks;
-        // console.log(myDatabaseTasks);
+    }
+
+    deleteTaskFromDatabase(id: string) {
+        // console.log(id);
+        // this.http.delete(this.firebaseRootURL).subscribe();
+        this.http.delete(`https://taskit-25b65-default-rtdb.firebaseio.com/tasks/${id}.json`).subscribe();
+
     }
 }

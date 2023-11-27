@@ -10,6 +10,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { LandingPageModule } from './landing-page/landing-page.module';
 
 import { TasksService } from './dashboard/shared/tasks.service';
+import { DatabaseService } from './dashboard/shared/database.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { TasksService } from './dashboard/shared/tasks.service';
     LandingPageModule
   ],
   exports: [ReactiveFormsModule],
-  providers: [TasksService],
+  providers: [TasksService, DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
