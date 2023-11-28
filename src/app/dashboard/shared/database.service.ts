@@ -49,15 +49,16 @@ export class DatabaseService {
                 console.log(tasksArray);
                 return tasksArray;
                 
+            }),
+            tap((tasks: Task[]) => {
+                console.log(tasks);
+                this.tasksService.setTasks(tasks);
             })
         )
             // .subscribe(tasks => {
             //     console.log(tasks);
             // });
-            // tap((tasks: Task[]) => {
-            //     console.log(tasks);
-            //     this.tasksService.setTasks(tasks);
-            // })
+
     }
 
     deleteTaskFromDatabase(id: string) {
