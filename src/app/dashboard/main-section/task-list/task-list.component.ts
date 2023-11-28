@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -11,7 +11,7 @@ import { DatabaseService } from '../../shared/database.service';
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, OnChanges, OnDestroy {
   savedTasks: Task[] = [];
   savedTasksSub: Subscription;
 
@@ -25,6 +25,7 @@ export class TaskListComponent implements OnInit {
   ngOnInit() {
     this.databaseService.getTasksFromDatabase().subscribe(tasks => {
       this.savedTasks = tasks;
+      console.log(tasks);
     });
     // this.savedTasks = this.tasksService.getTasks();
     // this.tasksService.taskListUpdated
@@ -41,17 +42,29 @@ export class TaskListComponent implements OnInit {
     );
   }
 
+  ngOnChanges() {
+    this.databaseService.getTasksFromDatabase().subscribe(tasks => {
+      this.savedTasks = tasks;
+    });
+
+    this.savedTasksSub = this.tasksService.taskListUpdated.subscribe(
+      (updatedTasksList: Task[]) => {
+        this.savedTasks = [...updatedTasksList];
+      }
+    );
+  }
+
   ngOnDestroy() {
     this.savedTasksSub.unsubscribe();
   }
 
-  navigateToEditTaskRoute(id: number) {
+  navigateToEditTaskRoute(id: string) {
     this.rotuer.navigate(['./', id, 'edit'], {
       relativeTo: this.route,
     });
   }
 
-  navigateToDeleteAlertRoute(id: number) {
+  navigateToDeleteAlertRoute(id: string) {
     this.rotuer.navigate(['./', id, 'delete'], {
       relativeTo: this.route,
     });

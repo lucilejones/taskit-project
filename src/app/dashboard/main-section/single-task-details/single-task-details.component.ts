@@ -19,7 +19,7 @@ export class SingleTaskDetailsComponent {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      const taskIdFromParams = +params['id'];
+      const taskIdFromParams = params['id'];
       this.taskDetails = this.tasksService.getTaskById(taskIdFromParams);
     })
   }

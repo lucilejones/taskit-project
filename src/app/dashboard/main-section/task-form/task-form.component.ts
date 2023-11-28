@@ -17,7 +17,7 @@ export class TaskFormComponent {
 
   isEditingTask: boolean = false;
   isTaskFormSubmitted: boolean = false;
-  taskId: number | null = null;
+  taskId: string | null = null;
   taskDetails: Partial<Task> = {
     title: '',
     description: '',
@@ -47,7 +47,8 @@ export class TaskFormComponent {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.taskId = +params['id'];
+      this.taskId = params['id'];
+      console.log(this.taskId);
 
       this.isEditingTask = !!this.taskId;
 
@@ -89,19 +90,22 @@ export class TaskFormComponent {
 
     if (this.isEditingTask) {
       this.tasksService.updateTask(this.taskId, this.taskDetails);
+      // need function here to update the database
       console.log(this.taskId);
     } else {
       const newTask: Task = {
-        id: +(Math.random() * 1000000).toFixed(0),
+        // id: +(Math.random() * 1000000).toFixed(0),
         ...form.value,
         // actions: ['edit', 'delete']
       }
 
       this.tasksService.addTask(newTask);
+      this.databaseService.addTaskToDatabase(newTask);
       console.log("form value", form.value);
       console.log("tasks list", this.tasksService.getTasks());
     } 
-    this.databaseService.saveTasksToDatabase();
+    
+    // this.databaseService.saveTasksToDatabase();
     // this.formClicked.emit();
     this.router.navigate(['/dashboard']);
     // console.log(this.formClicked);

@@ -29,9 +29,10 @@ export class TasksService {
     return this.savedTasks.slice();
   }
 
-  getTaskById(id: number) {
+  getTaskById(id: string) {
+    console.log(id);
     const foundTask = this.savedTasks.find((task) => task.id === id);
-
+    console.log(foundTask);
     return foundTask;
   }
 
@@ -40,7 +41,7 @@ export class TasksService {
     this.taskListUpdated.next(this.savedTasks.slice());
   }
 
-  updateTask(taskId: number, updatedTaskValues: Partial<Task>) {
+  updateTask(taskId: string, updatedTaskValues: Partial<Task>) {
     const taskIndex = this.savedTasks.findIndex((task) => task.id === taskId);
 
     if(taskIndex !== -1) {
@@ -58,12 +59,14 @@ export class TasksService {
   }
 
   setTasks(tasks: Task[]) {
-    console.log(tasks);
-    this.savedTasks = tasks;
-    this.taskListUpdated.next(this.savedTasks.slice());
+    if(tasks) {
+      console.log(tasks);
+      this.savedTasks = tasks;
+      this.taskListUpdated.next(this.savedTasks.slice());
+    } 
   }
 
-  removeTask(id: number) {
+  removeTask(id: string) {
     const newTaskList = this.savedTasks.filter((task) => task.id !== id);
 
     this.savedTasks = newTaskList;
