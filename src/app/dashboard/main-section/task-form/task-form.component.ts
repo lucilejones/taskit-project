@@ -98,12 +98,15 @@ export class TaskFormComponent {
         ...form.value
       }
 
+      
+      this.databaseService.addTaskToDatabase(newTask).subscribe();
       this.tasksService.addTask(newTask);
-      this.databaseService.addTaskToDatabase(newTask);
-      console.log("form value", form.value);
-      console.log("tasks list", this.tasksService.getTasks());
-    } 
-    
+      // console.log("form value", form.value);
+      // console.log("tasks list", this.tasksService.getTasks());
+    }
+
+    // this.databaseService.getTasksFromDatabase().subscribe();
+
     this.router.navigate(['/dashboard']);
   }
 

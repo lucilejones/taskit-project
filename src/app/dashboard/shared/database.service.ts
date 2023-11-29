@@ -23,8 +23,18 @@ export class DatabaseService {
         this.http.put(this.firebaseRootURL, myTasks).subscribe();
     }
 
+    // addTaskToDatabase(newTask: Task) {
+    //     this.http.post(this.firebaseRootURL, newTask).subscribe();
+    // }
     addTaskToDatabase(newTask: Task) {
-        this.http.post(this.firebaseRootURL, newTask).subscribe();
+        return this.http.post(this.firebaseRootURL, newTask)
+        .pipe(
+            tap((task: Task) => {
+                console.log(task);
+                // this.tasksService.getTasks();
+                this.getTasksFromDatabase().subscribe();
+            })
+        )
     }
 
     getTasksFromDatabase() {

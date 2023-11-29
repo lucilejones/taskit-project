@@ -41,6 +41,7 @@ export class TaskListComponent implements OnInit, OnChanges, OnDestroy {
         this.savedTasks = [...updatedTasksList];
       }
     );
+
   }
 
   ngOnChanges() {
@@ -50,6 +51,8 @@ export class TaskListComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy() {
     this.savedTasksSub.unsubscribe();
   }
+
+  
 
   navigateToEditTaskRoute(id: string) {
     this.rotuer.navigate(['./', id, 'edit'], {
