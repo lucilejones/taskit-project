@@ -51,6 +51,7 @@ export class TasksService {
         id: taskId
       };
 
+      
       this.taskListUpdated.next(this.savedTasks.slice());
     }
     else {

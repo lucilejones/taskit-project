@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -12,8 +12,8 @@ import { DatabaseService } from '../../shared/database.service';
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css']
 })
+
 export class TaskFormComponent {
-  // @Output() formClicked: EventEmitter<boolean> = new EventEmitter();
 
   isEditingTask: boolean = false;
   isTaskFormSubmitted: boolean = false;
@@ -90,13 +90,12 @@ export class TaskFormComponent {
 
     if (this.isEditingTask) {
       this.tasksService.updateTask(this.taskId, this.taskDetails);
-      // need function here to update the database
+      this.databaseService.updateTasksToDatabase();
       console.log(this.taskId);
     } else {
       const newTask: Task = {
         // id: +(Math.random() * 1000000).toFixed(0),
-        ...form.value,
-        // actions: ['edit', 'delete']
+        ...form.value
       }
 
       this.tasksService.addTask(newTask);
@@ -105,14 +104,10 @@ export class TaskFormComponent {
       console.log("tasks list", this.tasksService.getTasks());
     } 
     
-    // this.databaseService.saveTasksToDatabase();
-    // this.formClicked.emit();
     this.router.navigate(['/dashboard']);
-    // console.log(this.formClicked);
   }
 
   onClose() {
-    // this.formClicked.emit();
     this.router.navigate(['/dashboard']);
 }
 }

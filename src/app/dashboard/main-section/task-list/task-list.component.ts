@@ -27,11 +27,12 @@ export class TaskListComponent implements OnInit, OnChanges, OnDestroy {
       this.savedTasks = tasks;
       console.log(tasks);
     });
+
     // this.savedTasks = this.tasksService.getTasks();
     // this.tasksService.taskListUpdated
     //   .subscribe(
     //     (tasks: Task[]) => {
-    //       this.tasks = tasks;
+    //       this.savedTasks = tasks;
     //     }
     //   )
 
@@ -43,15 +44,7 @@ export class TaskListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges() {
-    this.databaseService.getTasksFromDatabase().subscribe(tasks => {
-      this.savedTasks = tasks;
-    });
 
-    this.savedTasksSub = this.tasksService.taskListUpdated.subscribe(
-      (updatedTasksList: Task[]) => {
-        this.savedTasks = [...updatedTasksList];
-      }
-    );
   }
 
   ngOnDestroy() {

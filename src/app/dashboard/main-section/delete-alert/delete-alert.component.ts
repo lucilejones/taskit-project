@@ -26,7 +26,7 @@ export class DeleteAlertComponent {
     })
   }
 
-  deleteTask(id) {
+  deleteTask(id: string) {
     this.tasksService.removeTask(id);
     this.databaseService.deleteTaskFromDatabase(id);
     this.router.navigate(['/dashboard']);

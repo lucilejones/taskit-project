@@ -17,7 +17,7 @@ export class DatabaseService {
         private tasksService: TasksService
     ) {}
 
-    saveTasksToDatabase() {
+    updateTasksToDatabase() {
         const myTasks = this.tasksService.getTasks();
 
         this.http.put(this.firebaseRootURL, myTasks).subscribe();
@@ -65,6 +65,5 @@ export class DatabaseService {
         // console.log(id);
         // this.http.delete(this.firebaseRootURL).subscribe();
         this.http.delete(`https://taskit-25b65-default-rtdb.firebaseio.com/tasks/${id}.json`).subscribe();
-
     }
 }
